@@ -1,0 +1,45 @@
+name: Build Windows Application
+
+on:
+  push:
+    tags:
+      - 'v*'
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run CYK Tests
+        run: npm test
+
+      - name: Build Web Application
+        run: npm run build
+
+      - name: Package Windows Desktop App (.exe)
+        run: |
+          npx --yes electron-builder --windows --x64 -c.extraMetadata.name="cyk-parser-studio" -c.directories.output="release"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Windows Binary Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: CYK-Parser-Studio-Windows-x64
+          path: release/*.exe
+          retention-days: 14
