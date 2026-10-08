@@ -1,0 +1,8 @@
+{
+  "name": "CYK Parser Studio",
+  "description": "Interactive Cocke–Younger–Kasami Parser & Visualization Tool with dynamic programming triangular table, step-by-step trace, and CNF validation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
