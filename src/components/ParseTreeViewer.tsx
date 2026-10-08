@@ -131,7 +131,7 @@ export const ParseTreeViewer: React.FC<ParseTreeViewerProps> = ({
   };
 
   return (
-    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm space-y-4 transition-colors">
+    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-3.5 sm:p-5 shadow-sm space-y-4 transition-colors w-full min-w-0 max-w-full overflow-hidden">
       <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-100 dark:border-slate-800">
         <div>
           <div className="text-[11px] font-mono text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
@@ -176,8 +176,9 @@ export const ParseTreeViewer: React.FC<ParseTreeViewerProps> = ({
       </div>
 
       {/* SVG Canvas Container */}
-      <div className="relative overflow-auto border border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50/50 dark:bg-slate-950/40 p-4 max-h-[480px] flex justify-center">
+      <div className="relative overflow-auto border border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50/50 dark:bg-slate-950/40 p-2 sm:p-4 max-h-[480px]">
         <div
+          className="inline-flex justify-center min-w-full"
           style={{
             transform: `scale(${scale})`,
             transformOrigin: 'top center',

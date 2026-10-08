@@ -93,16 +93,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         </div>
 
         {/* Animated Mini Triangular Matrix in Hero */}
-        <div className="mt-12 p-4 sm:p-6 bg-white/80 dark:bg-slate-900/80 backdrop-blur border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl max-w-2xl mx-auto">
-          <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">
+        <div className="mt-8 sm:mt-12 p-3 sm:p-6 bg-white/80 dark:bg-slate-900/80 backdrop-blur border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl max-w-2xl mx-auto overflow-hidden">
+          <div className="text-[11px] sm:text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">
             Dynamic Programming Triangular Pyramid (Input: "baaba")
           </div>
 
-          <div className="flex flex-col items-center gap-1.5 text-xs font-mono">
-            {/* Len 5: Apex */}
-            <div className="p-1.5 px-3 rounded bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 font-bold shadow-sm animate-pulse">
-              [0,4] {'{S}'}
-            </div>
+          <div className="w-full overflow-x-auto py-1">
+            <div className="inline-flex flex-col items-center min-w-full gap-1 sm:gap-1.5 text-[11px] sm:text-xs font-mono">
+              {/* Len 5: Apex */}
+              <div className="p-1 sm:p-1.5 px-2.5 sm:px-3 rounded bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 font-bold shadow-sm animate-pulse">
+                [0,4] {'{S}'}
+              </div>
 
             {/* Len 4 */}
             <div className="flex gap-1.5">
@@ -163,7 +164,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* Feature Pillars */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 w-full">

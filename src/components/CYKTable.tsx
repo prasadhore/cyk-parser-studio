@@ -20,7 +20,7 @@ export const CYKTable: React.FC<CYKTableProps> = ({
 
   if (!result || result.table.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[360px] p-8 border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-xl text-center bg-slate-50/50 dark:bg-slate-900/30">
+      <div className="flex flex-col items-center justify-center min-h-[300px] sm:min-h-[360px] p-6 sm:p-8 border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-xl text-center bg-slate-50/50 dark:bg-slate-900/30 w-full min-w-0">
         <div className="w-12 h-12 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold text-lg mb-3">
           Δ
         </div>
@@ -77,23 +77,23 @@ export const CYKTable: React.FC<CYKTableProps> = ({
   };
 
   return (
-    <div className="flex flex-col gap-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 sm:p-5 shadow-sm transition-colors">
+    <div className="flex flex-col gap-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-3.5 sm:p-5 shadow-sm transition-colors w-full min-w-0 max-w-full overflow-hidden">
       {/* Table Header and Switcher */}
-      <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-100 dark:border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-3 border-b border-slate-100 dark:border-slate-800">
         <div>
-          <h2 className="text-base font-semibold text-slate-900 dark:text-slate-100 flex items-center gap-2">
+          <h2 className="text-sm sm:text-base font-semibold text-slate-900 dark:text-slate-100 flex items-center gap-2">
             <span>Dynamic Programming CYK Table</span>
-            <span className="text-xs font-mono font-normal px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+            <span className="text-[11px] font-mono font-normal px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
               T[0..{n - 1}][0..{n - 1}]
             </span>
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-            Click any cell to inspect substring derivations, split points, and production traces.
+            Click any cell to inspect derivations, split points, and production traces.
           </p>
         </div>
 
         {/* View Toggle */}
-        <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-lg">
+        <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-lg self-start sm:self-auto shrink-0">
           <button
             onClick={() => {
               sound.play('click');
@@ -106,7 +106,7 @@ export const CYKTable: React.FC<CYKTableProps> = ({
             }`}
           >
             <Layers className="w-3.5 h-3.5" />
-            <span>Pyramid View</span>
+            <span>Pyramid</span>
           </button>
 
           <button
@@ -121,48 +121,48 @@ export const CYKTable: React.FC<CYKTableProps> = ({
             }`}
           >
             <Grid3X3 className="w-3.5 h-3.5" />
-            <span>Matrix Grid View</span>
+            <span>Matrix</span>
           </button>
         </div>
       </div>
 
       {/* Legend */}
-      <div className="flex flex-wrap items-center gap-3 text-[11px] text-slate-500 dark:text-slate-400 px-1">
+      <div className="flex flex-wrap items-center gap-2.5 text-[11px] text-slate-500 dark:text-slate-400 px-0.5">
         <div className="flex items-center gap-1.5">
           <span className="w-2.5 h-2.5 rounded-sm bg-amber-400 dark:bg-amber-500" />
           <span>Active Evaluation</span>
         </div>
         <div className="flex items-center gap-1.5">
           <span className="w-2.5 h-2.5 rounded-sm bg-sky-400 dark:bg-sky-500" />
-          <span>Left Cell (T[i][k])</span>
+          <span>Left Cell</span>
         </div>
         <div className="flex items-center gap-1.5">
           <span className="w-2.5 h-2.5 rounded-sm bg-violet-400 dark:bg-violet-500" />
-          <span>Right Cell (T[k+1][j])</span>
+          <span>Right Cell</span>
         </div>
         <div className="flex items-center gap-1.5">
           <span className="w-2.5 h-2.5 rounded-sm bg-emerald-500" />
-          <span>Accepted Root (S ∈ T[0][n-1])</span>
+          <span>Accepted Root</span>
         </div>
       </div>
 
-      {/* Main Table Content */}
-      <div className="overflow-x-auto py-2">
+      {/* Main Table Content - Centered with smooth scroll */}
+      <div className="w-full overflow-x-auto py-2">
         {viewMode === 'pyramid' ? (
           /* Classical CYK Pyramid: Length n at top, down to length 1 at base */
-          <div className="flex flex-col items-center gap-2 min-w-max mx-auto p-2">
+          <div className="inline-flex flex-col items-center min-w-full gap-1.5 sm:gap-2 p-1 sm:p-2">
             {Array.from({ length: n }, (_, rowIdx) => {
               // len goes from n down to 1
               const len = n - rowIdx;
               const cellCount = n - len + 1;
 
               return (
-                <div key={len} className="flex items-center gap-2">
-                  <span className="w-12 text-right text-[11px] font-mono text-slate-400 shrink-0">
-                    len={len}
+                <div key={len} className="flex items-center gap-1.5 sm:gap-2">
+                  <span className="w-10 sm:w-12 text-right text-[10px] sm:text-[11px] font-mono text-slate-400 shrink-0">
+                    L={len}
                   </span>
 
-                  <div className="flex gap-2">
+                  <div className="flex gap-1.5 sm:gap-2">
                     {Array.from({ length: cellCount }, (_, i) => {
                       const j = i + len - 1;
                       const cell = result.table[i][j];
@@ -175,17 +175,17 @@ export const CYKTable: React.FC<CYKTableProps> = ({
                             sound.play('cellSelected');
                             onSelectCell(cell);
                           }}
-                          className={`w-20 sm:w-24 h-16 sm:h-20 p-1.5 rounded-lg border transition-all text-center flex flex-col justify-between items-center group cursor-pointer focus:outline-none ${highlightClass}`}
+                          className={`w-14 sm:w-20 md:w-24 h-13 sm:h-16 md:h-20 p-1 sm:p-1.5 rounded-lg border transition-all text-center flex flex-col justify-between items-center group cursor-pointer focus:outline-none shrink-0 ${highlightClass}`}
                           title={`Click to inspect T[${i}][${j}] ("${cell.substring}")`}
                         >
-                          <div className="w-full flex items-center justify-between text-[10px] font-mono text-slate-400 dark:text-slate-500">
+                          <div className="w-full flex items-center justify-between text-[8px] sm:text-[10px] font-mono text-slate-400 dark:text-slate-500">
                             <span>[{i},{j}]</span>
-                            <span className="truncate max-w-[44px]">"{cell.substring}"</span>
+                            <span className="truncate max-w-[32px] sm:max-w-[44px]">"{cell.substring}"</span>
                           </div>
 
-                          <div className="my-auto font-mono text-xs sm:text-sm font-bold tracking-tight">
+                          <div className="my-auto font-mono text-[11px] sm:text-xs md:text-sm font-bold tracking-tight">
                             {cell.nonTerminals.length > 0 ? (
-                              <span className="text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400">
+                              <span className="text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 truncate max-w-[50px] sm:max-w-none block">
                                 {'{' + cell.nonTerminals.join(',') + '}'}
                               </span>
                             ) : (
@@ -193,7 +193,7 @@ export const CYKTable: React.FC<CYKTableProps> = ({
                             )}
                           </div>
 
-                          <div className="text-[9px] text-slate-400 flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                          <div className="hidden sm:flex text-[9px] text-slate-400 items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
                             <Eye className="w-2.5 h-2.5" />
                             <span>trace</span>
                           </div>
@@ -206,18 +206,18 @@ export const CYKTable: React.FC<CYKTableProps> = ({
             })}
 
             {/* Input Characters Bar under Pyramid Base */}
-            <div className="flex items-center gap-2 pt-2 border-t border-slate-200 dark:border-slate-800 mt-2">
-              <span className="w-12 text-right text-[11px] font-mono font-semibold text-indigo-600 dark:text-indigo-400 shrink-0">
-                input w:
+            <div className="flex items-center gap-1.5 sm:gap-2 pt-2 border-t border-slate-200 dark:border-slate-800 mt-1 sm:mt-2">
+              <span className="w-10 sm:w-12 text-right text-[10px] sm:text-[11px] font-mono font-semibold text-indigo-600 dark:text-indigo-400 shrink-0">
+                w:
               </span>
-              <div className="flex gap-2">
+              <div className="flex gap-1.5 sm:gap-2">
                 {chars.map((ch, idx) => (
                   <div
                     key={idx}
-                    className="w-20 sm:w-24 py-1.5 text-center font-mono font-bold text-sm bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-md border border-slate-200 dark:border-slate-700"
+                    className="w-14 sm:w-20 md:w-24 py-1 sm:py-1.5 text-center font-mono font-bold text-xs sm:text-sm bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-md border border-slate-200 dark:border-slate-700 shrink-0"
                   >
                     {ch}
-                    <div className="text-[10px] font-normal text-slate-400 font-sans">
+                    <div className="text-[9px] sm:text-[10px] font-normal text-slate-400 font-sans">
                       idx {idx}
                     </div>
                   </div>
@@ -227,15 +227,15 @@ export const CYKTable: React.FC<CYKTableProps> = ({
           </div>
         ) : (
           /* Matrix Grid View: Upper Triangular */
-          <div className="min-w-max p-2">
-            <table className="border-collapse">
+          <div className="inline-block min-w-full p-1 sm:p-2">
+            <table className="border-collapse mx-auto">
               <thead>
                 <tr>
-                  <th className="p-2 text-xs font-mono text-slate-400 text-left">
+                  <th className="p-1.5 sm:p-2 text-[10px] sm:text-xs font-mono text-slate-400 text-left">
                     i \ j
                   </th>
                   {Array.from({ length: n }, (_, j) => (
-                    <th key={j} className="p-2 text-xs font-mono text-slate-600 dark:text-slate-300 text-center w-24">
+                    <th key={j} className="p-1 sm:p-2 text-[10px] sm:text-xs font-mono text-slate-600 dark:text-slate-300 text-center w-14 sm:w-20 md:w-24">
                       j={j} ('{chars[j]}')
                     </th>
                   ))}
@@ -244,7 +244,7 @@ export const CYKTable: React.FC<CYKTableProps> = ({
               <tbody>
                 {Array.from({ length: n }, (_, i) => (
                   <tr key={i}>
-                    <td className="p-2 text-xs font-mono font-semibold text-slate-600 dark:text-slate-300">
+                    <td className="p-1.5 sm:p-2 text-[10px] sm:text-xs font-mono font-semibold text-slate-600 dark:text-slate-300">
                       i={i} ('{chars[i]}')
                     </td>
                     {Array.from({ length: n }, (_, j) => {
@@ -269,16 +269,16 @@ export const CYKTable: React.FC<CYKTableProps> = ({
                               sound.play('cellSelected');
                               onSelectCell(cell);
                             }}
-                            className={`w-24 h-16 p-1.5 rounded-lg border transition-all text-center flex flex-col justify-between items-center group cursor-pointer focus:outline-none ${highlightClass}`}
+                            className={`w-14 sm:w-20 md:w-24 h-13 sm:h-16 p-1 sm:p-1.5 rounded-lg border transition-all text-center flex flex-col justify-between items-center group cursor-pointer focus:outline-none ${highlightClass}`}
                           >
-                            <div className="w-full flex items-center justify-between text-[10px] font-mono text-slate-400">
+                            <div className="w-full flex items-center justify-between text-[8px] sm:text-[10px] font-mono text-slate-400">
                               <span>[{i},{j}]</span>
-                              <span className="truncate max-w-[48px]">"{cell.substring}"</span>
+                              <span className="truncate max-w-[28px] sm:max-w-[48px]">"{cell.substring}"</span>
                             </div>
 
-                            <div className="font-mono text-xs font-bold my-auto">
+                            <div className="font-mono text-[11px] sm:text-xs font-bold my-auto">
                               {cell.nonTerminals.length > 0 ? (
-                                <span className="text-slate-900 dark:text-slate-100">
+                                <span className="text-slate-900 dark:text-slate-100 truncate max-w-[48px] sm:max-w-none block">
                                   {'{' + cell.nonTerminals.join(',') + '}'}
                                 </span>
                               ) : (
@@ -286,8 +286,8 @@ export const CYKTable: React.FC<CYKTableProps> = ({
                               )}
                             </div>
 
-                            <div className="text-[9px] text-slate-400">
-                              len={j - i + 1}
+                            <div className="text-[8px] sm:text-[9px] text-slate-400">
+                              L={j - i + 1}
                             </div>
                           </button>
                         </td>

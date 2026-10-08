@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Check, Play, Circle } from 'lucide-react';
+import { ArrowRight, Check, Circle } from 'lucide-react';
 import { CYKResult } from '../types/cyk.ts';
 
 interface AlgorithmFlowProps {
@@ -40,21 +40,21 @@ export const AlgorithmFlow: React.FC<AlgorithmFlowProps> = ({
   });
 
   return (
-    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 sm:p-5 shadow-sm transition-colors">
+    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-3.5 sm:p-5 shadow-sm transition-colors w-full min-w-0 max-w-full overflow-hidden">
       <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
         <div>
-          <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+          <h3 className="text-xs sm:text-sm font-semibold text-slate-900 dark:text-slate-100">
             CYK Dynamic Programming Pipeline Flow
           </h3>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+          <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5">
             Stage progression through subproblem lengths and final membership decision
           </p>
         </div>
       </div>
 
       {/* Horizontal Flow Pipeline */}
-      <div className="overflow-x-auto py-3">
-        <div className="flex items-center gap-2 min-w-max">
+      <div className="w-full overflow-x-auto py-3">
+        <div className="inline-flex items-center gap-2 min-w-max pb-1">
           {stages.map((stage, idx) => {
             const isLast = idx === stages.length - 1;
             const isDecision = stage.id === 'decision';
@@ -94,7 +94,7 @@ export const AlgorithmFlow: React.FC<AlgorithmFlowProps> = ({
             return (
               <React.Fragment key={stage.id}>
                 <div
-                  className={`px-3 py-2 rounded-lg border flex flex-col items-center text-center transition-all ${badgeColor}`}
+                  className={`px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg border flex flex-col items-center text-center transition-all shrink-0 ${badgeColor}`}
                 >
                   <div className="flex items-center gap-1.5 text-xs font-semibold">
                     {isPast ? (
@@ -112,7 +112,7 @@ export const AlgorithmFlow: React.FC<AlgorithmFlowProps> = ({
                 </div>
 
                 {!isLast && (
-                  <ArrowRight className="w-4 h-4 text-slate-300 dark:text-slate-700 shrink-0" />
+                  <ArrowRight className="w-3.5 sm:w-4 h-3.5 sm:h-4 text-slate-300 dark:text-slate-700 shrink-0" />
                 )}
               </React.Fragment>
             );

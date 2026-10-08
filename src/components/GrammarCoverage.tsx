@@ -61,7 +61,7 @@ export const GrammarCoverage: React.FC<GrammarCoverageProps> = ({
   const activeRuleStr = currentStep?.checkingRule?.replace('->', '→').trim();
 
   return (
-    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 sm:p-5 shadow-sm transition-colors">
+    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-3.5 sm:p-5 shadow-sm transition-colors w-full min-w-0 max-w-full overflow-hidden">
       <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-100 dark:border-slate-800">
         <div>
           <div className="text-[11px] font-mono text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
@@ -87,7 +87,7 @@ export const GrammarCoverage: React.FC<GrammarCoverageProps> = ({
           return (
             <div
               key={idx}
-              className={`p-2.5 rounded-lg border font-mono text-xs transition-all flex flex-col justify-between ${
+              className={`p-2 sm:p-2.5 rounded-lg border font-mono text-xs transition-all flex flex-col justify-between min-w-0 ${
                 isActive
                   ? 'bg-amber-50 dark:bg-amber-950/80 border-amber-400 text-amber-900 dark:text-amber-200 ring-2 ring-amber-400/50 scale-[1.02]'
                   : wasUsed
@@ -95,8 +95,8 @@ export const GrammarCoverage: React.FC<GrammarCoverageProps> = ({
                   : 'bg-slate-50/60 dark:bg-slate-950/40 border-slate-200 dark:border-slate-800 text-slate-400'
               }`}
             >
-              <div className="flex items-center justify-between">
-                <span className="font-bold">{item.ruleStr}</span>
+              <div className="flex items-center justify-between gap-1 min-w-0">
+                <span className="font-bold truncate text-[11px] sm:text-xs">{item.ruleStr}</span>
                 {wasUsed ? (
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
                 ) : (

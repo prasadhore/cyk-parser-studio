@@ -53,7 +53,7 @@ export const ResultCard: React.FC<ResultCardProps> = ({
   return (
     <div
       id="cyk-result-section"
-      className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm space-y-4 transition-colors"
+      className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-3.5 sm:p-5 shadow-sm space-y-4 transition-colors w-full min-w-0 max-w-full overflow-hidden"
     >
       {/* Header Banner */}
       <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-100 dark:border-slate-800">

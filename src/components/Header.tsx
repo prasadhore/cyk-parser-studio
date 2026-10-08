@@ -56,24 +56,24 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md transition-colors">
-      <div className="w-full px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <div className="max-w-5xl mx-auto px-3 sm:px-6 lg:px-8 h-14 flex items-center justify-between gap-2 sm:gap-3">
         {/* Brand Zone */}
         <button
           onClick={() => {
             sound.play('click');
             setActiveTab('landing');
           }}
-          className="flex items-center gap-2.5 text-left group focus:outline-none"
+          className="flex items-center gap-2 text-left group focus:outline-none min-w-0 shrink"
         >
-          <div className="w-8 h-8 rounded-lg bg-indigo-600 dark:bg-indigo-500 flex items-center justify-center text-white font-bold text-sm shadow-sm group-hover:scale-105 transition-transform">
+          <div className="w-8 h-8 rounded-lg bg-indigo-600 dark:bg-indigo-500 flex items-center justify-center text-white font-bold text-sm shadow-sm group-hover:scale-105 transition-transform shrink-0">
             Δ
           </div>
-          <span className="text-base sm:text-lg font-bold tracking-tight text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors whitespace-nowrap">
+          <span className="text-sm sm:text-lg font-bold tracking-tight text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors whitespace-nowrap truncate">
             CYK Parser Studio
           </span>
         </button>
 
-        {/* Navigation Links */}
+        {/* Desktop Navigation Links */}
         <nav className="hidden md:flex items-center gap-1 sm:gap-2">
           <button
             onClick={() => {
@@ -151,7 +151,7 @@ export const Header: React.FC<HeaderProps> = ({
         </nav>
 
         {/* Action Controls */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2 shrink-0">
           {/* Quick Demo Button */}
           <button
             onClick={onStartDemo}
@@ -165,7 +165,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Share */}
           <button
             onClick={onShare}
-            className="p-2 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-100 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            className="p-1.5 sm:p-2 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-100 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
             title="Share Grammar & Input via URL"
             aria-label="Share URL"
           >
@@ -175,7 +175,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Sound Toggle */}
           <button
             onClick={toggleSound}
-            className={`p-2 rounded-md transition-colors ${
+            className={`p-1.5 sm:p-2 rounded-md transition-colors ${
               soundEnabled
                 ? 'text-indigo-600 dark:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800'
                 : 'text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
@@ -189,7 +189,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Fullscreen Toggle */}
           <button
             onClick={toggleFullscreen}
-            className="p-2 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-100 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            className="p-1.5 sm:p-2 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-100 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
             title={isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen (Full Display)'}
             aria-label="Toggle Fullscreen"
           >
@@ -199,7 +199,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Theme Switcher */}
           <button
             onClick={cycleTheme}
-            className="p-2 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-100 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            className="p-1.5 sm:p-2 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-100 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
             title={`Current Theme: ${theme}`}
             aria-label="Toggle Theme"
           >
@@ -212,6 +212,83 @@ export const Header: React.FC<HeaderProps> = ({
             )}
           </button>
         </div>
+      </div>
+
+      {/* Mobile Tab Navigation Bar */}
+      <div className="md:hidden flex items-center gap-1 overflow-x-auto py-1.5 px-3 border-t border-slate-100 dark:border-slate-800/80 bg-slate-50/70 dark:bg-slate-900/70">
+        <button
+          onClick={() => {
+            sound.play('click');
+            setActiveTab('studio');
+          }}
+          className={`px-2.5 py-1 text-xs font-medium rounded-md whitespace-nowrap transition-colors shrink-0 ${
+            activeTab === 'studio'
+              ? 'bg-indigo-600 text-white'
+              : 'text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800'
+          }`}
+        >
+          Parser Studio
+        </button>
+
+        <button
+          onClick={() => {
+            sound.play('click');
+            setActiveTab('examples');
+          }}
+          className={`px-2.5 py-1 text-xs font-medium rounded-md whitespace-nowrap transition-colors flex items-center gap-1 shrink-0 ${
+            activeTab === 'examples'
+              ? 'bg-indigo-600 text-white'
+              : 'text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800'
+          }`}
+        >
+          <Library className="w-3 h-3" />
+          <span>Examples</span>
+        </button>
+
+        <button
+          onClick={() => {
+            sound.play('click');
+            setActiveTab('learn');
+          }}
+          className={`px-2.5 py-1 text-xs font-medium rounded-md whitespace-nowrap transition-colors flex items-center gap-1 shrink-0 ${
+            activeTab === 'learn'
+              ? 'bg-indigo-600 text-white'
+              : 'text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800'
+          }`}
+        >
+          <BookOpen className="w-3 h-3" />
+          <span>Learn CYK</span>
+        </button>
+
+        <button
+          onClick={() => {
+            sound.play('click');
+            setActiveTab('api');
+          }}
+          className={`px-2.5 py-1 text-xs font-medium rounded-md whitespace-nowrap transition-colors flex items-center gap-1 shrink-0 ${
+            activeTab === 'api'
+              ? 'bg-indigo-600 text-white'
+              : 'text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800'
+          }`}
+        >
+          <Code className="w-3 h-3" />
+          <span>API</span>
+        </button>
+
+        <button
+          onClick={() => {
+            sound.play('click');
+            setActiveTab('downloads');
+          }}
+          className={`px-2.5 py-1 text-xs font-medium rounded-md whitespace-nowrap transition-colors flex items-center gap-1 shrink-0 ${
+            activeTab === 'downloads'
+              ? 'bg-indigo-600 text-white'
+              : 'text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800'
+          }`}
+        >
+          <Download className="w-3 h-3" />
+          <span>Downloads</span>
+        </button>
       </div>
     </header>
   );

@@ -112,7 +112,7 @@ export const StepController: React.FC<StepControllerProps> = ({
   };
 
   return (
-    <div className="flex flex-col gap-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 sm:p-5 shadow-sm transition-colors">
+    <div className="flex flex-col gap-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-3.5 sm:p-5 shadow-sm transition-colors w-full min-w-0 max-w-full overflow-hidden">
       {/* Control Bar */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2">
@@ -236,9 +236,9 @@ export const StepController: React.FC<StepControllerProps> = ({
       {/* Real-time Dynamic Explanation Card */}
       {currentStep && (
         <div className="mt-1 p-3.5 rounded-lg bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs">
-          <div className="flex items-center justify-between mb-1.5">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1.5">
             <span className="font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-indigo-500" />
+              <Sparkles className="w-3.5 h-3.5 text-indigo-500 shrink-0" />
               <span>
                 {currentStep.type === 'init'
                   ? 'Base Initialization (Length 1)'
@@ -248,7 +248,7 @@ export const StepController: React.FC<StepControllerProps> = ({
               </span>
             </span>
 
-            <span className="font-mono text-[11px] text-slate-500">
+            <span className="font-mono text-[10px] sm:text-[11px] text-slate-500">
               Cell T[{currentStep.cell[0]}][{currentStep.cell[1]}] · Substring "{currentStep.substring}"
             </span>
           </div>
@@ -266,8 +266,8 @@ export const StepController: React.FC<StepControllerProps> = ({
             </div>
           )}
 
-          <div className="mt-2 text-[10px] font-mono text-slate-400 flex items-center justify-between border-t border-slate-200/60 dark:border-slate-800/60 pt-1.5">
-            <span>Shortcuts: [Space] Play/Pause · [← / →] Prev/Next · [Esc] Dismiss</span>
+          <div className="mt-2 text-[10px] font-mono text-slate-400 flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-t border-slate-200/60 dark:border-slate-800/60 pt-1.5">
+            <span>Shortcuts: [Space] Play/Pause · [← / →] Prev/Next</span>
             <span>Speed: {speed}x</span>
           </div>
         </div>
