@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "tsx server.ts",
-    "build": "vite build && node -e \"import('node:fs').then(fs => { fs.copyFileSync('dist/index.html', 'dist/404.html'); })\"",
+    "dev": "node -e \"import('node:fs').then(fs => { fs.copyFileSync('index.template.html', 'index.html'); })\" && tsx server.ts",
+    "build": "node -e \"import('node:fs').then(fs => { fs.copyFileSync('index.template.html', 'index.html'); })\" && vite build && node -e \"import('node:fs').then(fs => { fs.copyFileSync('dist/index.html', 'dist/404.html'); fs.copyFileSync('dist/index.html', 'index.html'); fs.copyFileSync('dist/index.html', '404.html'); fs.cpSync('dist/assets', 'assets', {recursive: true}); })\"",
     "start": "tsx server.ts",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
